@@ -10,7 +10,7 @@ require (
 	github.com/creack/pty v1.1.11 // indirect
 	github.com/envoyproxy/go-control-plane v0.9.8 // indirect
 	github.com/envoyproxy/protoc-gen-validate v0.4.1 // indirect
-	github.com/gin-gonic/gin v1.6.3 // indirect
+	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
