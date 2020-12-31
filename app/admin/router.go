@@ -7,12 +7,15 @@ import (
 )
 
 func Routers(e * gin.Engine){
-	e.POST("/admin/goods/add",add)
-	e.POST("/admin/goods/delete",delete)
-	e.POST("/admin/goods/update",update)
-	e.POST("/admin/goods/detail",detail)
-	e.POST("/admin/goods/list",list)
-	e.GET("/admin/goods/test",test)
+	goods := e.Group("/admin/goods")
+	{
+		goods.POST("/add",add)
+		goods.POST("/delete",delete)
+		goods.POST("/update",update)
+		goods.POST("/detail",detail)
+		goods.POST("/goods/list",list)
+		goods.GET("/goods/test",test)
+	}
 }
 func add(c * gin.Context){
 	bn := c.DefaultPostForm("bn","100")
