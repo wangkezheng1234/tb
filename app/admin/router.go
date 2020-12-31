@@ -16,6 +16,10 @@ func Routers(e * gin.Engine){
 		goods.POST("/goods/list",list)
 		goods.GET("/goods/test",test)
 	}
+	goodsType := e.Group("/admin/goods/type")
+	{
+		goodsType.POST("/add",typeAdd)
+	}
 }
 func add(c * gin.Context){
 	bn := c.DefaultPostForm("bn","100")
@@ -57,4 +61,11 @@ func list(c * gin.Context){
 func test(c * gin.Context){
 	bn := c.DefaultQuery("title", "100")
 	c.String(http.StatusOK, fmt.Sprintf("id= %s", bn))
+}
+func typeAdd(c * gin.Context){
+	c.JSON(http.StatusOK,gin.H{
+		"code":200,
+		"data":"type add",
+		"msg":"type add succ",
+	})
 }
