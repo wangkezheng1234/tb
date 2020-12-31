@@ -22,7 +22,7 @@ func main(){
 	{
 		api.POST("/goods/info",info)
 	}
-	r.Run(":9096")
+	r.Run(":9097")
 }
 func add(c * gin.Context){
 	bn := c.DefaultPostForm("bn","100")
