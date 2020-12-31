@@ -5,8 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
-
+func checkToken(c * gin.Context){
+	token := c.PostForm("token")
+	fmt.Printf("token is    %v\n",token)
+	c.Next()
+}
 func Routers(e * gin.Engine){
+	e.Use(checkToken)
 	goods := e.Group("/admin/goods")
 	{
 		goods.POST("/add",add)
@@ -22,10 +27,10 @@ func Routers(e * gin.Engine){
 	}
 }
 func add(c * gin.Context){
-	bn := c.DefaultPostForm("bn","100")
+	//bn := c.DefaultPostForm("bn","100")
 	c.JSON(http.StatusOK,gin.H{
 		"code":200,
-		"data":bn,
+		"data":"add",
 		"msg":"add goods succ",
 	})
 }
