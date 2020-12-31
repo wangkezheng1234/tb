@@ -6,13 +6,22 @@ import (
 	"net/http"
 )
 func main(){
-	r := gin.Default()
-	r.POST("/admin/goods/add",add)
-	r.POST("/admin/goods/delete",delete)
-	r.POST("/admin/goods/update",update)
-	r.POST("/admin/goods/detail",detail)
-	r.POST("/admin/goods/list",list)
-	r.GET("/admin/goods/test",test)
+	r     := gin.Default()
+	//后端接口
+	admin := r.Group("/admin")
+	{
+		admin.POST("/goods/add",add)
+		admin.POST("/goods/delete",delete)
+		admin.POST("/goods/update",update)
+		admin.POST("/goods/detail",detail)
+		admin.POST("/goods/list",list)
+		admin.GET("/goods/test",test)
+	}
+	//前端接口
+	api := r.Group("/api")
+	{
+		api.POST("/goods/info",info)
+	}
 	r.Run(":9096")
 }
 func add(c * gin.Context){
@@ -51,7 +60,15 @@ func list(c * gin.Context){
 		"msg":"list succ",
 	})
 }
+//测试商品传递
 func test(c * gin.Context){
-	name := c.DefaultQuery("title", "枯藤")
-	c.String(http.StatusOK, fmt.Sprintf("hello %s", name))
+	bn := c.DefaultQuery("title", "100")
+	c.String(http.StatusOK, fmt.Sprintf("id= %s", bn))
+}
+func info(c * gin.Context){
+	c.JSON(http.StatusOK,gin.H{
+		"code":200,
+		"data":"info",
+		"msg":"info succ",
+	})
 }
